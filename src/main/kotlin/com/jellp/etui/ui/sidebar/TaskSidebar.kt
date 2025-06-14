@@ -1,19 +1,19 @@
 package com.jellp.etui.ui.sidebar
 
 import com.intellij.openapi.extensions.ExtensionPointName
-import com.intellij.tasks.TaskRepository
-import com.jellp.etui.impl.fallback.ui.sidebar.FallbackTaskListProvider
-import com.jellp.etui.ui.sidebar.extension.TaskListProvider
+import com.intellij.tasks.Task
+import com.jellp.etui.impl.fallback.ui.sidebar.FallbackTaskNodeProvider
+import com.jellp.etui.ui.sidebar.extension.TaskNodeProvider
 
-class TaskSidebar(private val repository: TaskRepository) {
+class TaskSidebar(private val tasks: List<Task>) {
 
     // TODO: Make this an actual sidebar
 
-    private fun retrieveTaskListProvider() =
-        taskListProviders.findFirstSafe { it.accepts(repository) } ?: FallbackTaskListProvider()
+    private fun retrieveTaskNodeProvider() =
+        taskListProviders.findFirstSafe { it.accepts(tasks.first()) } ?: FallbackTaskNodeProvider()
 
     companion object {
-        private val taskListProviders: ExtensionPointName<TaskListProvider> =
-            ExtensionPointName.create("com.jellp.etui.taskListProvider")
+        private val taskListProviders: ExtensionPointName<TaskNodeProvider<Task>> =
+            ExtensionPointName.create("com.jellp.etui.taskNodeProvider")
     }
 }

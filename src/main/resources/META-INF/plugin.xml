@@ -22,8 +22,8 @@
     <depends>com.intellij.tasks</depends>
 
     <extensionPoints>
-        <extensionPoint name="taskListProvider" dynamic="true"
-                        interface="com.jellp.etui.ui.sidebar.extension.TaskListProvider"/>
+        <extensionPoint name="taskNodeProvider" dynamic="true"
+                        interface="com.jellp.etui.ui.sidebar.extension.TaskNodeProvider"/>
     </extensionPoints>
 
     <!-- Extension points defined by the plugin.
